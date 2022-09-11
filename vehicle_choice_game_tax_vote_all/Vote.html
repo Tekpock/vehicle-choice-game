@@ -1,0 +1,36 @@
+
+    {{ block title }}
+    {{ if subsession.round_number == Constants.stage1_round }} <center> <b>Partie 1</b> </center>{{ endif }}
+    {{ if subsession.round_number == Constants.stage2_round }}<center>   <b>Partie 2</b> </center> {{ endif }}
+    {{ if subsession.round_number == Constants.stage3_round }} <center>  <b>Partie 3</b> </center> {{ endif }}
+    {{ endblock }}
+
+
+{{ block content }}
+<p>
+    <i><b>Etape 1 (vote)</b></i> <br>
+    <br>
+    Le vote de la partie
+    {{ if subsession.round_number == Constants.stage1_round }}1{{ endif }}
+    {{ if subsession.round_number == Constants.stage2_round }}2{{ endif }}
+    {{ if subsession.round_number == Constants.stage3_round }}3{{ endif }}
+    aura un impact sur l'étape 2 de la Partie 3. <br>
+    <br>
+    Vous devez choisir si vous souhaitez la mise en place d'une taxe lors de l'étape 2 de la Partie 3.<br>
+    <br>
+    <b>Les membres de votre groupe devront aussi choisir s'il souhaitent la mise en place ou non de la taxe.
+        Le résultat d'un des trois votes sera implémenté à l'étape 2 de la partie 3.</b> <br>
+    <br>
+    <img src="{{ static 'Images/Etapes.png' }}"/><br>
+    <br>
+    <i>En quoi consiste la mise en place de la taxe?</i> <br>
+    <br>
+    A chaque étape 2, où il y a une mise en place de la taxe (Partie 2 et Partie 3 selon le résultat du vote Partie 3),
+    les individus qui auront choisi l'option C devront payer une taxe de <b>25 ECUs</b>.<br>
+    <br>
+    Les ECUs collectés en tant que taxe seront <b>redistribués</b> parmi les six membres du groupe de façon équitable.
+</p>
+    {{ formfields }}
+    {{ next_button }}
+
+{{ endblock }}

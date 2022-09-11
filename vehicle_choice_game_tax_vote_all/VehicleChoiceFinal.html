@@ -1,0 +1,208 @@
+
+{{ block content }}
+<p>
+        <i><b>Etape 2</b></i> <br>
+        <br>
+
+
+        {{ if final_policy == "Tax" }}
+        La mise en place de la taxe a remporté le vote,
+        vous allez donc choisir l'option que vous préférez en prenant en compte la présence d'une taxe.<br>
+        {{ endif }}
+
+        {{ if final_policy == "NoTax" }}
+        La non mise en place de la taxe a remporté le vote, vous allez donc choisir l'option que vous préférez.
+        Il n'y a pas de taxe à cette étape. <br>
+        {{ endif }}
+        <br>
+        Cette étape comporte 10 périodes.
+        A chaque période vous et les autres membres du groupe devez décider de façon individuelle
+        <b>l'option vous préférez entre l'option A, B et C</b>
+        {{ if group.tax_present == 1 }}
+        , en prenant en compte la présence d'une <b>taxe</b>{{ endif }}.
+        Au début de chaque période, vous, ainsi que les cinq autres membres de votre groupe, disposez chacun d’une dotation de 100 ECUs.<br>
+        {{ if group.tax_present == 1 }} Rappel: si vous choisissez l'option C, vous devez payer une taxe de 25 ECUs. <br> {{ endif }}
+        <br>
+
+        Vous êtes à la période {{ stage_round }}. Il reste {{ stage_remaining }} périodes.<br>
+        <br>
+        Veuillez vous référer au tableau suivant afin de prendre votre choix:<br>
+        <br>
+        {{ if player.id_in_group == 1 }} <center> <img src="{{ static 'Images/J1.png' }}"/> <br> </center> {{ endif }}
+
+        {{ if player.id_in_group == 2 }} </center> <img src="{{ static 'Images/J2.png' }}"/> <br> </center> {{ endif }}
+
+        {{ if player.id_in_group == 3 }} </center> <img src="{{ static 'Images/J3.png' }}"/> <br> </center> {{ endif }}
+
+        {{ if player.id_in_group == 4 }} </center> <img src="{{ static 'Images/J4.png' }}"/> <br> </center> {{ endif }}
+
+        {{ if player.id_in_group == 5 }} </center> <img src="{{ static 'Images/J5.png' }}"/> <br> </center> {{ endif }}
+
+        {{ if player.id_in_group == 6 }} </center> <img src="{{ static 'Images/J6.png' }}"/> <br> </center> {{ endif }}
+        <br>
+
+        {{ if current_stage == 2 }} </center> <img src="{{ static 'Images/redistribution.png' }}"/> </center> {{ endif }}
+
+</p>
+
+    {{ formfields }}
+
+<br>
+<br>
+
+
+
+
+<style>
+* {
+    margin:0;
+    padding:0;
+}
+a {
+    text-decoration: none;
+    color: gray;
+}
+a:hover {
+    color: silver;
+}
+body { margin: 20px; }
+#hint {
+    font-size: .75em;
+    color: gray;
+}
+table {
+    background-color: lightskyblue;
+    border-collapse: collapse;
+    border: 1px solid darkblue;
+}
+
+input[type="button"] {
+    width: 30px;
+    height: 30px;
+}
+
+td {
+    padding: 2px;
+    text-align: center;
+}
+
+#top {
+    padding: 5px;
+}
+#term{
+
+    text-align: right;
+    margin: 5px auto 5px auto;
+}
+
+.ok {
+    border-color: darkgreen;
+    background-color: palegreen;
+}
+
+.notok {
+    border-color: red;
+    background-color: lavenderblush;
+}
+
+
+
+
+</style>
+
+
+
+<html>
+    <head>
+        <title>Javascript Calculator</title>
+    </head>
+
+    <body>
+        <h3>Calculatrice</h3>
+        <div></div>
+        <br/>
+        <table>
+            <tr>
+                <td colspan=5 id="top"><input type=text readonly="readonly" value=0 id="term" /></td>
+            </tr>
+            <tr>
+                <td><input type=button value="7"/></td>
+                <td><input type=button value="8"/></td>
+                <td><input type=button value="9"/></td>
+                <td><input type=button value="C"/></td>
+                <td><input type=button value="<"/></td>
+            </tr>
+            <tr>
+                <td><input type=button value="4"/></td>
+                <td><input type=button value="5"/></td>
+                <td><input type=button value="6"/></td>
+                <td><input type=button value="("/></td>
+                <td><input type=button value=")"/></td>
+            </tr>
+            <tr>
+                <td><input type=button value="1"/></td>
+                <td><input type=button value="2"/></td>
+                <td><input type=button value="3"/></td>
+                <td><input type=button value="*"/></td>
+                <td><input type=button value="/"/></td>
+            </tr>
+            <tr>
+                <td><input type=button value="0"/></td>
+                <td><input type=button value="."/></td>
+                <td><input type=button value="-"/></td>
+                <td><input type=button value="+"/></td>
+                <td><input type=button value="="/></td>
+            </tr>
+        </table>
+    </body>
+</html>
+
+
+
+<script>
+    function clearTerm() {
+    $("#term").val("0");
+}
+
+function bs() {
+    $("#term").val( ($("#term").val().length==1 ? "0" : $("#term").val().substr(0, $("#term").val().length -1)) );
+}
+
+function solve() {
+    try {
+        var x = eval($("#term").val());
+        $("#term").val(x);
+        $("#term").addClass("ok");
+        $("#term").effect("highlight");
+    } catch (err) {
+        $("#term").addClass("notok");
+        $("#term").effect("shake", 75);
+    }
+}
+
+$("input[type='button']").click(function() {
+    $("#term").removeClass("notok").removeClass("ok");
+    var exp= /[0123456789()\/*+.\-=<C]/;
+    if($(this).val().match(exp)) {
+        switch($(this).val()) {
+            case "<": bs(); break;
+            case "C": clearTerm(); break;
+            case "=": solve(); break;
+            default:
+                $("#term").val( ($("#term").val()!="0" ? $("#term").val() + $(this).val() : $(this).val()) );
+                break;
+        }
+    }
+});
+
+
+</script>
+<br>
+<br>
+
+
+
+
+    {{ next_button }}
+
+{{ endblock }}
