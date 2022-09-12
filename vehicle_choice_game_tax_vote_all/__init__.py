@@ -1,4 +1,5 @@
 from otree.api import *
+import math
 
 doc = """
 Your app description
@@ -418,14 +419,7 @@ class VoteWaitPage(WaitPage):
     # ONLY SHOWS THE APP ON THE FIRST ROUND
     # @staticmethod
     def is_displayed(player: Player):
-        if player.round_number == Constants.stage1_round:
-            return True
-        elif player.round_number == Constants.stage2_round:
-            return True
-        elif player.round_number == Constants.stage3_round:
-            return True
-        else:
-            return False
+        return player.round_number in [Constants.stage1_round, Constants.stage2_round, Constants.stage3_round]
 
     after_all_players_arrive = set_majority
 
@@ -633,7 +627,7 @@ class Results(Page):
             participant.vars['selected_round'] = random_round
             player_in_selected_round = player.in_round(random_round)
             player.payoff_final = float(player_in_selected_round.payoff)
-            participant.payoff = player.payoff_final
+            participant.payoff = math.ceil(player.payoff_final)
 
     def vars_for_template(player: Player):
         # FETCHING OTHER PLAYERS VEHICLE CHOICE
