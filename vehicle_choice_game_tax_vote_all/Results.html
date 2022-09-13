@@ -13,14 +13,14 @@
         Vous recevez un gain supplémentaire de {{ group.tax_redistribution }} ECUS grace à la taxe.<br>
         {{ endif }}
         <br>
-        Votre paiement pour cette période {{ stage_round }} correspond à {{ player.payoff }} ECUS.<br>
+        Votre paiement pour cette période {{ stage_round }} correspond à {{ player.payoff|to0 }} ECUS.<br>
         <br>
 
         {{ if group.tax_present == 1 }}
         {{ Constants.endowment }} + {{ player.vehicle_utility }}
         -  {{ player.vehicle_cost }} - {{ player.vehicle_tax }} - ({{ all_conventional }} <span>&#215;</span> {{ Constants.conventional_pollution }})
         + {{ group.tax_redistribution }}
-        = {{ player.payoff }} ECUs
+        = {{ player.payoff|to0 }} ECUs
         <br>
         Détail du calcul: <br>
         <br>
@@ -43,7 +43,7 @@
         {{ if group.tax_present == 0 }}
         {{ Constants.endowment }} + {{ player.vehicle_utility }}
         -  {{ player.vehicle_cost }} - ({{ all_conventional }} <span>&#215;</span> {{ Constants.conventional_pollution }})
-        = {{ player.payoff }} ECUs
+        = {{ player.payoff|to0 }} ECUs
         <br>
         <br>
         <b>Détail du calcul:</b> <br>
@@ -61,7 +61,7 @@
 
         <br>
         {{ if show_previous == 1 }}
-        Votre paiement à la période précédente était de {{ prev_player.payoff }} ECUs.
+        Votre paiement à la période précédente était de {{ prev_player.payoff|to0 }} ECUs.
         {{ endif }}
 
 
