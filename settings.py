@@ -20,6 +20,19 @@ dict(
     ),
 
 dict(
+        name='vehicle_choice_game_both_treatments',
+        display_name="vehicle_choice_game_both_treatments",
+        num_demo_participants=6,
+        app_sequence=['vehicle_choice_game_both_treatments', 'my_simple_survey'
+                      ],
+        session_treatment=1,
+        doc="""
+        For sessions with taxation leave the value to the default value of 1.
+        For sessions with regulation please change the value to 0.
+        """
+    ),
+
+dict(
         name='my_simple_survey',
         display_name='my_simple_survey',
         app_sequence=['my_simple_survey'],
@@ -49,12 +62,7 @@ REAL_WORLD_CURRENCY_CODE = 'EUR'
 USE_POINTS = True
 
 ROOMS = [
-    dict(
-        name='econ101',
-        display_name='Econ 101 class',
-        participant_label_file='_rooms/econ101.txt',
-    ),
-    dict(name='live_demo', display_name='Room for live demo (no participant labels)'),
+
     dict(name='vehicle_choice', display_name='vehicle_choice')
 ]
 

@@ -1,0 +1,43 @@
+{{ block title }}
+<center><b> ETAPE 1 </b></center>
+{{ endblock }}
+
+{{ block content }}
+<p>
+    Les votes sont <i><b>importants</b></i>.<br>
+    <br>
+    Vous devez choisir si vous souhaitez <b>la mise en place d'une taxe ou non</b>.
+    Les membres de votre groupe devront aussi choisir s'il souhaitent la mise en place ou non de la taxe. <br>
+    <br>
+    Le résultat d'un des trois votes sera utilisé afin de déterminer si à l'étape 2 de la Partie 3 nous implémenterons ou pas une taxe.
+    Le vote qui sera utilisé sera déterminé grâce au tirage au sort d'une bille.<br>
+    <br>
+    <br>
+    Nous allons constituer une urne composée de 30 billes:<br>
+    <ul>
+        <li>10 billes violettes</li>
+        <li>10 billes orange</li>
+        <li>10 billes bleues</li>
+    </ul>
+    <br>
+    Si une bille violette est choisie, alors le résultat du vote 1 sera implémenté.<br>
+    <br>
+    Si une bille orange est choisie, alors le résultat du vote 2 sera implémenté.<br>
+    <br>
+    Si une bille bleue est tirée au sort, alors le résultat du vote 3 sera implémenté.<br>
+    <br>
+Chacun des trois votes a <b>la même probabilité</b> d'être implementé, soit 1/3.<br>
+    <br>
+    <center>  <img src="{{ static 'Images/urne.png' }}"/> <br>  </center>
+    <br>
+    Si dans le vote tiré au sort, il y a égalité (3 oui et 3 non), le départage s'effectuera grâce à un lancer de dé.
+    Si le nombre est pair, alors il y aura la mise en place de la taxe.
+    Si le nombre est impair, alors il n'y aura pas de mise en place de la taxe.<br>
+    <br>
+    Vous connaîtrez les résultats des différents votes de votre groupe après le vote 3. <br>
+    <br>
+</p>
+
+{{ next_button }}
+{{ endblock }}
+
