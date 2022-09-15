@@ -1,0 +1,73 @@
+{{ block title }}
+<center> <b>Etape 2</b> </center>
+{{ endblock }}
+
+{{ block content }}
+<p>
+    L'<b>étape 2</b> est constituée de <i>10 périodes</i>.<br>
+    <br>
+    A chaque période nous allons vous donner une dotation de <b>100 ECUs</b>
+    et nous vous demanderons de choisir l'option que vous préférez entre les options A, B et C.<br>
+    <br>
+    <b>Chaque option</b> vous rapportera un <b>gain différent</b> et chaque option a un <b>coût différent</b> d'utilisation.
+    <br>
+    <br>
+    Si vous choisissez l'option C vous allez avoir une <b>perte de 5 ECUs</b> supplémentaires,
+    et vous <b>imposerez une perte de 5 ECUs à chaque participant</b> de votre groupe,
+    même s'ils n'ont pas choisi l'option C.<br>
+    <br>
+    Les options A et B n'entraînent pas de perte.<br>
+    <br>
+    Si vous choisissez l'option C, chaque membre de votre groupe aura 5 ECUs en moins pour la période concernée.<br>
+    <br>
+    <b>De même, si un autre membre de votre groupe a choisi l'option C, vous aurez une perte de 5 ECUs</b>.<br>
+    <br>
+    Ainsi, si deux membres de votre groupe ont choisi l'option C, vous aurez une perte de 10 ECUs.<br>
+    <br>
+    Le tableau suivant résume les gains, les coûts et les dégâts de chaque option.<br>
+    <br>
+    Vous avez été assigné au Joueur {{ player.id_in_group }}.<br>
+    <br>
+
+    {{ if player.id_in_group == 1 }} <center>  <img src="{{ static 'Images/J1.png' }}"/> </center> <br> {{ endif }}
+
+    {{ if player.id_in_group == 2 }} <center>  <img src="{{ static 'Images/J2.png' }}"/> </center> <br> {{ endif }}
+
+    {{ if player.id_in_group == 3 }} <center> <img src="{{ static 'Images/J3.png' }}"/> </center> <br> {{ endif }}
+
+    {{ if player.id_in_group == 4 }} <center>  <img src="{{ static 'Images/J4.png' }}"/> </center> <br> {{ endif }}
+
+    {{ if player.id_in_group == 5 }} <center>  <img src="{{ static 'Images/J5.png' }}"/> </center> <br> {{ endif }}
+
+    {{ if player.id_in_group == 6 }} <center>  <img src="{{ static 'Images/J6.png' }}"/> </center> <br> {{ endif }}
+
+
+    <br>
+    <b>Exemple:</b> Supposons que vous avez choisi l'option A et que trois membres de votre groupe ont choisi l'option C.<br>
+    <br>
+    Votre paiement sera donc égal à :<br>
+    <br>
+    <center>100+100-55-(5<span>&#215;</span>3) = 130</center> <br>
+    <br>
+    100 correspond à votre dotation initiale, 100 correspond à votre gain,
+    55 correspond au coût d'utilisation de l'option choisie
+    et 5<span>&#215;</span>3 correspond à la perte imposée par chaque membre de votre groupe ayant choisi l'option C.<br>
+
+    <br>
+    <center> <img src="{{ static 'Images/externalities.png' }}"/> </center><br>
+    <br>
+
+    Après chaque période, votre paiement sera affiché sur votre écran pour la période concernée.<br>
+    <br>
+
+
+
+
+
+
+
+</p>
+
+{{ next_button }}
+{{ endblock }}
+

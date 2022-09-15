@@ -12,6 +12,14 @@ dict(
     ),
 
 dict(
+        name='vehicle_choice_game_regulation_vote_all',
+        display_name="vehicle_choice_game_regulation_vote_all",
+        num_demo_participants=6,
+        app_sequence=['vehicle_choice_game_regulation_vote_all', 'my_simple_survey'
+                      ]
+    ),
+
+dict(
         name='my_simple_survey',
         display_name='my_simple_survey',
         app_sequence=['my_simple_survey'],
@@ -26,7 +34,7 @@ dict(
 # e.g. self.session.config['participation_fee']
 
 SESSION_CONFIG_DEFAULTS = dict(
-    real_world_currency_per_point=1.00, participation_fee=7.00, doc=""
+    real_world_currency_per_point=0.125, participation_fee=7.00, doc=""
 )
 
 PARTICIPANT_FIELDS = []

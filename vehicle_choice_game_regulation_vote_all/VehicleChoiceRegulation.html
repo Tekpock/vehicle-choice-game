@@ -4,44 +4,41 @@
         <i><b>Etape 2</b></i> <br>
         <br>
 
-
-        {{ if final_policy == "Policy" }}
-        La mise en place de la taxe a remporté le vote,
-        vous allez donc choisir l'option que vous préférez en prenant en compte la présence d'une taxe.<br>
+        {{ if player.round_number >= Constants.stage2_round }}
+    <i>Rappel :</i> Lors de cette étape, <b>la taxe sera implémentée</b>.
+        Si vous choisissez l'option C alors vous devez payer une taxe de <b> 25 ECUs </b>.
+        Le montant collecté des taxes sera redistribué de façon égale entre les membres du groupe.
         {{ endif }}
 
-        {{ if final_policy == "NoPolicy" }}
-        La non mise en place de la taxe a remporté le vote, vous allez donc choisir l'option que vous préférez.
-        Il n'y a pas de taxe à cette étape. <br>
-        {{ endif }}
+
         <br>
-        Cette étape comporte 10 périodes.
-        A chaque période vous et les autres membres du groupe devez décider de façon individuelle
-        <b>l'option que vous préférez entre l'option A, B et C</b>
-        {{ if group.tax_present == 1 }}
+        Cette étape comporte 10 périodes.<br>
+        <br>
+        A chaque période vous et les autres membres du groupe devez décider de façon
+        individuelle <b>l'option vous préférez entre l'option A, B et C</b>
+        {{ if player.round_number >= Constants.stage2_round }}
         , en prenant en compte la présence d'une <b>taxe</b>{{ endif }}.
-        Au début de chaque période, vous, ainsi que les cinq autres membres de votre groupe, disposez chacun d’une dotation de 100 ECUs.<br>
-        {{ if group.tax_present == 1 }} Rappel: si vous choisissez l'option C, vous devez payer une taxe de 25 ECUs. <br> {{ endif }}
+        Au début de chaque période, vous, ainsi que les cinq autres membres de votre groupe, disposez chacun d’une dotation de 100 ECUs. <br>
         <br>
 
         Vous êtes à la période {{ stage_round }}. Il reste {{ stage_remaining }} périodes.<br>
         <br>
         Veuillez vous référer au tableau suivant afin de prendre votre choix:<br>
         <br>
-        {{ if player.id_in_group == 1 }} <center> <img src="{{ static 'Images/J1.png' }}"/> <br> </center> {{ endif }}
+        {{ if player.id_in_group == 1 }} <center> <img src="{{ static 'Images/J1.png' }}"/> </center> <br> {{ endif }}
 
-        {{ if player.id_in_group == 2 }} </center> <img src="{{ static 'Images/J2.png' }}"/> <br> </center> {{ endif }}
+        {{ if player.id_in_group == 2 }} <center> <img src="{{ static 'Images/J2.png' }}"/> </center> <br> {{ endif }}
 
-        {{ if player.id_in_group == 3 }} </center> <img src="{{ static 'Images/J3.png' }}"/> <br> </center> {{ endif }}
+        {{ if player.id_in_group == 3 }} <center> <img src="{{ static 'Images/J3.png' }}"/> </center> <br> {{ endif }}
 
-        {{ if player.id_in_group == 4 }} </center> <img src="{{ static 'Images/J4.png' }}"/> <br> </center> {{ endif }}
+        {{ if player.id_in_group == 4 }} <center> <img src="{{ static 'Images/J4.png' }}"/> </center> <br> {{ endif }}
 
-        {{ if player.id_in_group == 5 }} </center> <img src="{{ static 'Images/J5.png' }}"/> <br> </center> {{ endif }}
+        {{ if player.id_in_group == 5 }} <center>  <img src="{{ static 'Images/J5.png' }}"/> </center> <br> {{ endif }}
 
-        {{ if player.id_in_group == 6 }} </center> <img src="{{ static 'Images/J6.png' }}"/> <br> </center> {{ endif }}
+        {{ if player.id_in_group == 6 }} <center>  <img src="{{ static 'Images/J6.png' }}"/> </center>  <br> {{ endif }}
         <br>
 
-        {{ if current_stage == 2 }} </center> <img src="{{ static 'Images/redistribution.png' }}"/> </center> {{ endif }}
+        {{ if current_stage == 2 }} <center>  <img src="{{ static 'Images/redistribution.png' }}"/> </center> {{ endif }}
 
 </p>
 

@@ -6,22 +6,22 @@
 
 
         {{ if final_policy == "Policy" }}
-        La mise en place de la taxe a remporté le vote,
-        vous allez donc choisir l'option que vous préférez en prenant en compte la présence d'une taxe.<br>
+        La mise en place de la régulation a remporté le vote,
+        vous allez donc choisir l'option que vous préférez en prenant en compte la présence d'une régulation.<br>
         {{ endif }}
 
         {{ if final_policy == "NoPolicy" }}
-        La non mise en place de la taxe a remporté le vote, vous allez donc choisir l'option que vous préférez.
-        Il n'y a pas de taxe à cette étape. <br>
+        La non mise en place de la régulation a remporté le vote, vous allez donc choisir l'option que vous préférez.
+        Il n'y a pas de régulation à cette étape. <br>
         {{ endif }}
         <br>
         Cette étape comporte 10 périodes.
         A chaque période vous et les autres membres du groupe devez décider de façon individuelle
         <b>l'option que vous préférez entre l'option A, B et C</b>
-        {{ if group.tax_present == 1 }}
-        , en prenant en compte la présence d'une <b>taxe</b>{{ endif }}.
+        {{ if group.regulation_present == 1 }}
+        , en prenant en compte la présence d'une <b>régulation</b>{{ endif }}.
         Au début de chaque période, vous, ainsi que les cinq autres membres de votre groupe, disposez chacun d’une dotation de 100 ECUs.<br>
-        {{ if group.tax_present == 1 }} Rappel: si vous choisissez l'option C, vous devez payer une taxe de 25 ECUs. <br> {{ endif }}
+        {{ if group.regulation_present == 1 }} Rappel: si vous choisissez l'option C, vous devez payer une régulation de 25 ECUs. <br> {{ endif }}
         <br>
 
         Vous êtes à la période {{ stage_round }}. Il reste {{ stage_remaining }} périodes.<br>

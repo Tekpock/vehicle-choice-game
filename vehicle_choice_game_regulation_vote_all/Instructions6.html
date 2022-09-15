@@ -1,0 +1,44 @@
+{{ block title }}
+
+{{ endblock }}
+
+{{ block content }}
+<p>
+    Lors de <b>l'étape 2 de la partie 2</b>, nous allons mettre en place une <b>taxe</b>.
+    Lors de chaque vote vous devez décider si vous souhaitez la mise en place ou non
+    d'une taxe à l'étape 2 de la Partie 3.<br>
+
+    <br>
+    <img src="{{ static 'Images/Etapes.png' }}"/><br>
+    <br>
+
+    <i>En quoi consiste la mise en place de la taxe?</i><br>
+    <br>
+    <br>
+    S'il y a une mise en place de la taxe (Partie 2 et selon le résultat du vote Partie 3)
+    les individus qui auront choisi <b>l'option C</b> devront payer une <i>taxe</i> de <b>25 ECUs</b>.<br>
+    <br>
+    Les ECUs collectés en tant que taxe seront redistribués parmi les six membres du groupe de façon équitable.
+    <br>
+    Si seulement un membre de votre groupe a choisi l'option C,
+    vous allez avoir une perte de 5 ECUs, mais vous allez recevoir 25/6= 4,16 ECUs supplémentaires à votre gain.<br>
+    <br>
+    Si deux membres de votre groupe ont choisi l'option C,
+    alors vous allez avoir une perte de 10 ECUs.
+    Chaque membre du groupe qui aura choisi l'option C devra payer 25 ECUs de taxe.
+    Vous allez donc recevoir grâce à la redistribution de la taxe 50/6 = 8.333 ECUs, et ainsi de suite.<br>
+
+    <br>
+    <img src="{{ static 'Images/redistribution.png' }}"/><br>
+    <br>
+
+    Si vous choisissez l'option C, alors vous allez avoir une perte de 5 ECUs, et vous allez devoir payer une taxe de 25 ECUs.
+    Vous recevrez grâce à la redistribution de la taxe 4,16 ECUs (si vous êtes seul à avoir choisi l'option C).<br>
+
+
+
+</p>
+
+{{ next_button }}
+{{ endblock }}
+

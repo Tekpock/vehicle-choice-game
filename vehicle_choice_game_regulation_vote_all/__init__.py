@@ -7,7 +7,7 @@ Your app description
 
 
 class Constants(BaseConstants):
-    name_in_url = 'vehicle_choice_game_tax_vote_all'
+    name_in_url = 'vehicle_choice_game_regulation_vote_all'
     players_per_group = 6
     num_rounds = 6
 
@@ -21,11 +21,11 @@ class Constants(BaseConstants):
     # NAME OF THE TREATMENT
     TREATMENTS = ['Policy', 'NoPolicy']
 
-    # THE PASSWORD FOR THE TAXATION PERIOD
-    # tax_password = "1234"
+    # THE PASSWORD FOR THE REGULATION PERIOD
+    # regulation_password = "1234"
 
-    # THE PASSWORD FOR THE NON TAXATION PERIOD
-    # no_tax_password = "abcd"
+    # THE PASSWORD FOR THE NON REGULATION PERIOD
+    # no_regulation_password = "abcd"
 
     endowment = 100
     conventional_cost = 40
@@ -42,10 +42,10 @@ class Constants(BaseConstants):
     conventional_pollution = 5
     public_pollution = 0
     electric_pollution = 0
-    # The Tax is equal to the marginal damage of the vehicle's pollution
-    conventional_tax = conventional_pollution * (players_per_group - 1)
-    public_tax = 0
-    electric_tax = 0
+    # The Regulation is equal to the marginal damage of the vehicle's pollution
+    conventional_regulation = conventional_pollution * (players_per_group - 1)
+    public_regulation = 0
+    electric_regulation = 0
 
 
 class Subsession(BaseSubsession):
@@ -77,14 +77,14 @@ class Subsession(BaseSubsession):
 class Group(BaseGroup):
     total_pollution = models.IntegerField()
     pollution_damage = models.IntegerField()
-    total_tax = models.IntegerField()
-    tax_redistribution = models.FloatField()
-    # vote_taxation = models.BooleanField()
+    total_regulation = models.IntegerField()
+    regulation_redistribution = models.FloatField()
+    # vote_regulation = models.BooleanField()
 
     # IS THIS ONE NESCESSARY ?
-    vote_taxation = models.StringField()
+    vote_regulation = models.StringField()
     # IS THIS ONE NESCESSARY ?
-    tax_present = models.BooleanField(initial=0)
+    regulation_present = models.BooleanField(initial=0)
 
 
 
@@ -103,9 +103,9 @@ class Group(BaseGroup):
 class Player(BasePlayer):
     # THE TREATMENT TO WHICH THE PLAYER WAS ASSIGNED
 
-    adopt_tax1 = models.StringField()
-    adopt_tax2 = models.StringField()
-    adopt_tax3 = models.StringField()
+    adopt_regulation1 = models.StringField()
+    adopt_regulation2 = models.StringField()
+    adopt_regulation3 = models.StringField()
 
     treatment = models.StringField(choices=Constants.TREATMENTS)
 
@@ -117,25 +117,38 @@ class Player(BasePlayer):
             ["Conventional Vehicle", "Option C"]
         ]
     )
+
+    vehicle_choice_regulation = models.StringField(
+        label="Quelle est l'option que vous préférez?",
+        choices=[
+            ["Electric Vehicle", "Option A"],
+            ["Public Vehicle", "Option B"]
+        ]
+    )
+
+
     vehicle_cost = models.IntegerField(initial=0)
     vehicle_pollution = models.IntegerField(intial=0)
     vehicle_utility = models.IntegerField(initial=0)
-    vehicle_tax = models.IntegerField(initial=0)
+    vehicle_regulation = models.IntegerField(initial=0)
     player_random_round = models.IntegerField(initial=0)
 
+    # THESE ARE THE PLAYER FIELDS THAT DETERMINE THE LAST STAGE OF THE GAME
+    # password = models.StringField(label="Veuillez introduire le mot de passe indiqué par l’expérimentateur :")
+    # final_policy = models.IntegerField(initial=0)
 
     # THIS IS THE FIELD FOR THE FINAL PAYOFF
     payoff_final = models.FloatField(initial=0)
 
-    # THIS IS THE FIELD FOR TAXATION VOTE
+    # THIS IS THE FIELD FOR REGULATION VOTE
 
     # FIRST POLICY VOTE
-    vote_taxation = models.BooleanField(
-        label="Souhaitez vous une mise en place de la taxe à l'étape 2 de la Partie 3 ?",
+    vote_regulation = models.BooleanField(
+        label="Souhaitez vous une mise en place de la regulatione à l'étape 2 de la Partie 3 ?",
         choices=[
             [True,
-             "Oui, je souhaite la mise en place d'une taxe de 25 ECUs pour chaque membre du groupe qui choisit l'option C."],
-            [False, "Non, je ne souhaite pas la mise en place d'une taxe de 25 ECUs."],
+             "Oui, je souhaite la mise en place d'une regulatione de 25 ECUs pour chaque membre du groupe qui choisit l'option C."],
+            [False, "Non, je ne souhaite pas la mise en place d'une regulatione de 25 ECUs."],
         ]
     )
 
@@ -162,7 +175,7 @@ class Player(BasePlayer):
     )
 
     comprehension3 = models.StringField(
-        label="3. Dans le cas où il y a une mise en place de la taxe, combien d'ECUs supplémentaires"
+        label="3. Dans le cas où il y a une mise en place de la regulatione, combien d'ECUs supplémentaires"
               " devez vous payer si vous avez choisi l'option C ?",
         choices=[
             ["Option1", "0 ECUs"],
@@ -191,33 +204,33 @@ def assign_treatment(player: Player):
 def set_majority(group: Group):
     # Obtain a list of all player votes
     players = group.get_players()
-    policy_votes = [p.vote_taxation for p in players]
+    policy_votes = [p.vote_regulation for p in players]
     # If True is greater than half the amounts of player in the group
     # Then it is set as the majority
     if policy_votes.count(True) > (Constants.players_per_group / 2):
-        # group.vote_taxation = True
-        group.vote_taxation = "Adopted"
+        # group.vote_regulation = True
+        group.vote_regulation = "Adopted"
         # STORING FOR LATER APPS THAT THE GROUP MAJORITY HAS VOTED FOR THE SUBSIDY
         for player in players:
             if player.round_number == Constants.stage1_round:
-                player.participant.vars['vote_taxation1'] = 1
+                player.participant.vars['vote_regulation1'] = 1
             elif player.round_number == Constants.stage2_round:
-                player.participant.vars['vote_taxation2'] = 1
+                player.participant.vars['vote_regulation2'] = 1
             elif player.round_number == Constants.stage3_round:
-                player.participant.vars['vote_taxation3'] = 1
+                player.participant.vars['vote_regulation3'] = 1
     elif policy_votes.count(False) > (Constants.players_per_group / 2):
-        # group.vote_taxation = False
-        group.vote_taxation = "Not Adopted"
+        # group.vote_regulation = False
+        group.vote_regulation = "Not Adopted"
         # STORING FOR LATER APPS THAT THE GROUP MAJORITY HAS NOT VOTED FOR THE SUBSIDY
         for player in players:
             if player.round_number == Constants.stage1_round:
-                player.participant.vars['vote_taxation1'] = 0
+                player.participant.vars['vote_regulation1'] = 0
             elif player.round_number == Constants.stage2_round:
-                player.participant.vars['vote_taxation2'] = 0
+                player.participant.vars['vote_regulation2'] = 0
             elif player.round_number == Constants.stage3_round:
-                player.participant.vars['vote_taxation3'] = 1
+                player.participant.vars['vote_regulation3'] = 1
     else:
-        group.vote_taxation = "Tie"
+        group.vote_regulation = "Tie"
 
     # NEED TO TAKE INTO CONSIDERATION THAT IT MIGHT BE A TIE
 
@@ -233,8 +246,8 @@ def set_payoffs(group: Group):
 
         # PAYOFF FOR STAGE 1 : NO POLICY
         if Constants.stage2_round > p.round_number >= Constants.stage1_round:
-            # THIS IS THE CASE FOR WITHOUT TAXATION
-            group.tax_present = 0
+            # THIS IS THE CASE FOR WITHOUT REGULATION
+            group.regulation_present = 0
             # WE ASSIGN COSTS AND POLLUTION AMOUNTS PER VEHICLE
             if p.vehicle_choice == "Conventional Vehicle":
                 p.vehicle_cost = Constants.conventional_cost
@@ -264,17 +277,11 @@ def set_payoffs(group: Group):
 
         # PAYOFF FOR STAGE 2 : POLICY
         elif Constants.stage3_round > p.round_number >= Constants.stage2_round:
-            # THIS IS THE PAYOFF WITH TAXATION
-            group.tax_present = 1
+            # THIS IS THE PAYOFF WITH REGULATION
+            group.regulation_present = 1
             ####################################
-            if p.vehicle_choice == "Conventional Vehicle":
-                p.vehicle_cost = Constants.conventional_cost
-                p.vehicle_pollution = Constants.conventional_pollution
-                p.vehicle_tax = Constants.conventional_tax
-                p.vehicle_utility = Constants.conventional_utility
-
                 # THIS IS THE PUBLIC VEHICLE OPTION
-            elif p.vehicle_choice == "Public Vehicle":
+            if p.vehicle_choice_regulation == "Public Vehicle":
                 p.vehicle_cost = Constants.public_cost
                 p.vehicle_pollution = Constants.public_pollution
                 # SETTING UP THE HETEROGENEITY
@@ -290,10 +297,10 @@ def set_payoffs(group: Group):
                     p.vehicle_utility = Constants.public_utility_5
                 elif p.id_in_group == 6:
                     p.vehicle_utility = Constants.public_utility_6
-            elif p.vehicle_choice == "Electric Vehicle":
+            elif p.vehicle_choice_regulation == "Electric Vehicle":
                 p.vehicle_cost = Constants.electric_cost
                 p.vehicle_pollution = Constants.electric_pollution
-                p.vehicle_tax = Constants.electric_tax
+                p.vehicle_regulation = Constants.electric_regulation
                 p.vehicle_utility = Constants.electric_utility
 
 
@@ -301,20 +308,14 @@ def set_payoffs(group: Group):
         # PAYOFF FOR STAGE 3 : POLICY OR NO POLICY
         elif p.round_number >= Constants.stage3_round:
 
-            # prev_vote_tax = p.participant.vars['final_policy']
+            # prev_vote_regulation = p.participant.vars['final_policy']
             final_policy = p.participant.vars['final_policy']
             if final_policy == "Policy":
-                # THIS IS THE PAYOFF WITH TAXATION
-                group.tax_present = 1
+                # THIS IS THE PAYOFF WITH REGULATION
+                group.regulation_present = 1
                 ##################################
-                if p.vehicle_choice == "Conventional Vehicle":
-                    p.vehicle_cost = Constants.conventional_cost
-                    p.vehicle_pollution = Constants.conventional_pollution
-                    p.vehicle_tax = Constants.conventional_tax
-                    p.vehicle_utility = Constants.conventional_utility
-                    # p.vehicle_subsidy = Constants.conventional_subsidy
                 # THIS IS THE PUBLIC VEHICLE OPTION
-                elif p.vehicle_choice == "Public Vehicle":
+                if p.vehicle_choice_regulation == "Public Vehicle":
                     p.vehicle_cost = Constants.public_cost
                     p.vehicle_pollution = Constants.public_pollution
                     # SETTING UP THE HETEROGENEITY
@@ -330,15 +331,15 @@ def set_payoffs(group: Group):
                         p.vehicle_utility = Constants.public_utility_5
                     elif p.id_in_group == 6:
                         p.vehicle_utility = Constants.public_utility_6
-                elif p.vehicle_choice == "Electric Vehicle":
+                elif p.vehicle_choice_regulation == "Electric Vehicle":
                     p.vehicle_cost = Constants.electric_cost
                     p.vehicle_pollution = Constants.electric_pollution
-                    p.vehicle_tax = Constants.electric_tax
+                    p.vehicle_regulation = Constants.electric_regulation
                     p.vehicle_utility = Constants.electric_utility
                     # p.vehicle_subsidy = Constants.electric_subsidy
             elif final_policy == "NoPolicy":
-                # THIS IS THE CASE FOR WITHOUT TAXATION
-                group.tax_present = 0
+                # THIS IS THE CASE FOR WITHOUT REGULATION
+                group.regulation_present = 0
                 # WE ASSIGN COSTS AND POLLUTION AMOUNTS PER VEHICLE
                 if p.vehicle_choice == "Conventional Vehicle":
                     p.vehicle_cost = Constants.conventional_cost
@@ -370,16 +371,16 @@ def set_payoffs(group: Group):
     group.total_pollution = sum(pollution_contributions)
     # WE ASSIGN INDIVIDUAL POLLUTION DAMAGE
     group.pollution_damage = group.total_pollution
-    # WE ASSIGN THE GROUP TAXATION AMOUNT
-    tax_contributions = [p.vehicle_tax for p in players]
-    group.total_tax = sum(tax_contributions)
-    # WE ASSIGN INDIVIDUAL TAXATION REDISTRIBUTION
-    group.tax_redistribution = group.total_tax / Constants.players_per_group
+    # WE ASSIGN THE GROUP REGULATION AMOUNT
+    # regulation_contributions = [p.vehicle_regulation for p in players]
+    # group.total_regulation = sum(regulation_contributions)
+    # WE ASSIGN INDIVIDUAL REGULATION REDISTRIBUTION
+    # group.regulation_redistribution = group.total_regulation / Constants.players_per_group
 
-    # WE ASSIGN PAYOFFS PER PLAYER (WITH TAXATION)
+    # WE ASSIGN PAYOFFS PER PLAYER (WITH REGULATION)
     for p in players:
-        p.payoff = Constants.endowment + p.vehicle_utility + group.tax_redistribution \
-                   - (p.vehicle_cost + p.vehicle_tax) - group.pollution_damage
+        p.payoff = Constants.endowment + p.vehicle_utility  \
+                   - p.vehicle_cost - group.pollution_damage
 
 
 
@@ -404,7 +405,7 @@ class Vote(Page):
             # or Constants.stage2_round or Constants.stage3_round
 
     form_model = "player"
-    form_fields = ["vote_taxation"]
+    form_fields = ["vote_regulation"]
 
 
 # VOTING WAIT PAGE
@@ -425,21 +426,21 @@ class VoteResults(Page):
 
     # @staticmethod
     def vars_for_template(player: Player):
-        vote1 = player.group.in_round(Constants.stage1_round).vote_taxation
-        vote2 = player.group.in_round(Constants.stage2_round).vote_taxation
-        vote3 = player.group.in_round(Constants.stage3_round).vote_taxation
+        vote1 = player.group.in_round(Constants.stage1_round).vote_regulation
+        vote2 = player.group.in_round(Constants.stage2_round).vote_regulation
+        vote3 = player.group.in_round(Constants.stage3_round).vote_regulation
 
         # SETTING AN OUTPUT FOR THE ADMINISTRATOR NEED TO TEST IF THIS WORKS
-        player.adopt_tax1 = vote1
-        player.adopt_tax2 = vote2
-        player.adopt_tax3 = vote3
+        player.adopt_regulation1 = vote1
+        player.adopt_regulation2 = vote2
+        player.adopt_regulation3 = vote3
 
         #########################
 
         players = player.group.get_players()
-        policy_votes1 = [p.in_round(Constants.stage1_round).vote_taxation for p in players]
-        policy_votes2 = [p.in_round(Constants.stage2_round).vote_taxation for p in players]
-        policy_votes3 = [p.in_round(Constants.stage3_round).vote_taxation for p in players]
+        policy_votes1 = [p.in_round(Constants.stage1_round).vote_regulation for p in players]
+        policy_votes2 = [p.in_round(Constants.stage2_round).vote_regulation for p in players]
+        policy_votes3 = [p.in_round(Constants.stage3_round).vote_regulation for p in players]
         for_vote1 = policy_votes1.count(True)
         against_vote1 = policy_votes1.count(False)
         for_vote2 = policy_votes2.count(True)
@@ -448,9 +449,9 @@ class VoteResults(Page):
         against_vote3 = policy_votes3.count(False)
 
         return dict(
-            # vote1=player.participant.vars['vote_taxation1'],
-            # vote2=player.participant.vars['vote_taxation2'],
-            # vote3=player.participant.vars['vote_taxation3'],
+            # vote1=player.participant.vars['vote_regulation1'],
+            # vote2=player.participant.vars['vote_regulation2'],
+            # vote3=player.participant.vars['vote_regulation3'],
             vote1=vote1,
             vote2=vote2,
             vote3=vote3,
@@ -513,7 +514,7 @@ class Comprehension(Page):
 
 class VehicleChoice(Page):
     def is_displayed(player: Player):
-        return player.round_number < Constants.stage3_round
+        return player.round_number < Constants.stage2_round
 
     form_model = "player"
     form_fields = ["vehicle_choice"]
@@ -543,27 +544,82 @@ class VehicleChoice(Page):
         # DISPLAY OF VOTE RESULTS
 
         # if player.round_number >= Constants.stage3_round:
-        #    # CASE WITH TAXATION
-        #   if player.treatment == "Tax":
-        #        tax_present = 1
-        #    if player.treatment == "NoTax":
-        #        notax_present = 1
+        #    # CASE WITH REGULATION
+        #   if player.treatment == "Regulation":
+        #        regulation_present = 1
+        #    if player.treatment == "NoRegulation":
+        #        noregulation_present = 1
         # else:
-        #   tax_present = 0
-        #    notax_present = 0
+        #   regulation_present = 0
+        #    noregulation_present = 0
 
         return dict(
             stage_remaining=stage_remaining,
             stage_round=stage_round,
             current_stage=current_stage,
-            # tax_present=tax_present,
-            # notax_present=notax_present
+            # regulation_present=regulation_present,
+            # noregulation_present=noregulation_present
         )
+
+
+
+class VehicleChoiceRegulation(Page):
+    def is_displayed(player: Player):
+        return Constants.stage2_round <= player.round_number < Constants.stage3_round
+
+    form_model = "player"
+    form_fields = ["vehicle_choice_regulation"]
+
+    def vars_for_template(player: Player):
+
+        # DISPLAY FOR FIRST STAGE OF THE GAME
+        if player.round_number < Constants.stage2_round:
+            stage_duration = Constants.stage2_round - Constants.stage1_round
+            stage_remaining = stage_duration - player.round_number
+            stage_round = player.round_number
+            current_stage = 1
+
+        # DISPLAY FOR THE SECOND STAGE OF THE GAME
+        elif Constants.stage2_round <= player.round_number < Constants.stage3_round:
+            stage_duration = Constants.stage2_round - Constants.stage1_round
+            stage_round = player.round_number - stage_duration
+            stage_remaining = stage_duration - stage_round
+            current_stage = 2
+        # DISPLAY FOR THE THIRD STAGE OF THE GAME
+        elif player.round_number >= Constants.stage3_round:
+            stage_duration = Constants.stage2_round - Constants.stage1_round
+            stage_round = player.round_number - Constants.stage3_round + 1
+            stage_remaining = stage_duration - stage_round
+            current_stage = 3
+
+        # DISPLAY OF VOTE RESULTS
+
+        # if player.round_number >= Constants.stage3_round:
+        #    # CASE WITH REGULATION
+        #   if player.treatment == "Regulation":
+        #        regulation_present = 1
+        #    if player.treatment == "NoRegulation":
+        #        noregulation_present = 1
+        # else:
+        #   regulation_present = 0
+        #    noregulation_present = 0
+
+        return dict(
+            stage_remaining=stage_remaining,
+            stage_round=stage_round,
+            current_stage=current_stage,
+            # regulation_present=regulation_present,
+            # noregulation_present=noregulation_present
+        )
+
+
+
+
 
 
 class VehicleChoiceFinal(Page):
     def is_displayed(player: Player):
-        return player.round_number >= Constants.stage3_round
+        return player.round_number >= Constants.stage3_round and player.participant.vars['final_policy'] == 'NoPolicy'
 
     form_model = "player"
     form_fields = ["vehicle_choice"]
@@ -596,9 +652,55 @@ class VehicleChoiceFinal(Page):
             stage_round=stage_round,
             current_stage=current_stage,
             final_policy=final_policy
-            # tax_present=tax_present,
-            # notax_present=notax_present
+            # regulation_present=regulation_present,
+            # noregulation_present=noregulation_present
         )
+
+
+
+class VehicleChoiceFinalRegulation(Page):
+    def is_displayed(player: Player):
+        return player.round_number >= Constants.stage3_round and player.participant.vars['final_policy'] == 'Policy'
+
+    form_model = "player"
+    form_fields = ["vehicle_choice_regulation"]
+
+    def vars_for_template(player: Player):
+
+        # DISPLAY FOR FIRST STAGE OF THE GAME
+        if player.round_number < Constants.stage2_round:
+            stage_duration = Constants.stage2_round - Constants.stage1_round
+            stage_remaining = stage_duration - player.round_number
+            stage_round = player.round_number
+            current_stage = 1
+
+        # DISPLAY FOR THE SECOND STAGE OF THE GAME
+        elif Constants.stage2_round <= player.round_number < Constants.stage3_round:
+            stage_duration = Constants.stage2_round - Constants.stage1_round
+            stage_round = player.round_number - stage_duration
+            stage_remaining = stage_duration - stage_round
+            current_stage = 2
+        # DISPLAY FOR THE THIRD STAGE OF THE GAME
+        elif player.round_number >= Constants.stage3_round:
+            stage_duration = Constants.stage2_round - Constants.stage1_round
+            stage_round = player.round_number - Constants.stage3_round + 1
+            stage_remaining = stage_duration - stage_round
+            current_stage = 3
+        final_policy = player.participant.vars['final_policy']
+
+        return dict(
+            stage_remaining=stage_remaining,
+            stage_round=stage_round,
+            current_stage=current_stage,
+            final_policy=final_policy
+            # regulation_present=regulation_present,
+            # noregulation_present=noregulation_present
+        )
+
+
+
+
+
 
 
 # VEHICLE CHOICE WAITING PAGE
@@ -625,13 +727,25 @@ class Results(Page):
     def vars_for_template(player: Player):
         # FETCHING OTHER PLAYERS VEHICLE CHOICE
         players = player.group.get_players()
-        all_choices = [p.vehicle_choice for p in players]
+
+        # FOR ROUNDS WITH REGULATION
+        if player.group.regulation_present == 1:
+            all_choices = [p.vehicle_choice_regulation for p in players]
+            player_choice = player.field_display('vehicle_choice_regulation')
+        # FOR ROUNDS WITHOUT REGULATION
+        elif player.group.regulation_present == 0:
+            all_choices = [p.vehicle_choice for p in players]
+            player_choice = player.field_display('vehicle_choice')
+
+
         all_conventional = all_choices.count("Conventional Vehicle")
         all_public = all_choices.count("Public Vehicle")
         all_electric = all_choices.count("Electric Vehicle")
-        player_choice = player.field_display('vehicle_choice')
+
+
+
         # FETCHING NUMBER OF PLAYERS WHO CHOSE THE CONVENTIONAL VEHICLE
-        players = player.group.get_players()
+        # players = player.group.get_players()
         # all_choices = [p.vehicle_choice for p in players]
         # all_conventional = all_choices.count("Conventional Vehicle")
 
@@ -668,8 +782,12 @@ class Results(Page):
 
 
 
+
+
+
 page_sequence = [Instructions1, Instructions2, Instructions3, Instructions4, Instructions5, Instructions6, Comprehension,
-                 InstructionsWaitPage, Vote, VoteWaitPage, VoteResults, VehicleChoice, VehicleChoiceFinal,
+                 InstructionsWaitPage, Vote, VoteWaitPage, VoteResults,
+                 VehicleChoice, VehicleChoiceRegulation, VehicleChoiceFinal, VehicleChoiceFinalRegulation,
                  ResultsWaitPage, Results]
 
 # page_sequence = [Instructions1, Instructions2, Instructions3, Instructions4, Instructions5, Comprehension,

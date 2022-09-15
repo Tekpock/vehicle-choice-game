@@ -1,0 +1,66 @@
+{{ block title }}
+    Résultats
+{{ endblock }}
+
+{{ block content }}
+    <p>
+        Vous avez choisi l'option {{ player_choice }}. Parmi les six membres de votre groupe {{ all_electric }}
+        ont choisi l'option A; {{ all_public }} ont choisi l'option B; et {{ all_conventional }}
+        ont choisi l'option C, vous perdez donc {{ group.pollution_damage }} ECUs.<br>
+
+        <br>
+        Votre paiement pour cette période {{ stage_round }} correspond à {{ player.payoff|to0 }} ECUS.<br>
+        <br>
+
+        {{ if group.regulation_present == 1 }}
+        {{ Constants.endowment }} + {{ player.vehicle_utility }}
+        -  {{ player.vehicle_cost }} - {{ player.vehicle_regulation }} - ({{ all_conventional }} <span>&#215;</span> {{ Constants.conventional_pollution }})
+        = {{ player.payoff|to0 }} ECUs
+        <br>
+        Détail du calcul: <br>
+        <br>
+        {{ Constants.endowment }} correspond à la dotation initiale.<br>
+        <br>
+        {{ player.vehicle_utility }} correspond à votre gain lié à votre choix.<br>
+        <br>
+        {{ player.vehicle_cost }} correspond au coût de l'option.<br>
+        <br>
+        {{ all_conventional }} <span>&#215;</span> {{ Constants.conventional_pollution }}
+        correspond au dégât généré par les participants ayant choisi l'option C.<br>
+
+
+        {{ endif }}
+
+        {{ if group.regulation_present == 0 }}
+        {{ Constants.endowment }} + {{ player.vehicle_utility }}
+        -  {{ player.vehicle_cost }} - ({{ all_conventional }} <span>&#215;</span> {{ Constants.conventional_pollution }})
+        = {{ player.payoff|to0 }} ECUs
+        <br>
+        <br>
+        <b>Détail du calcul:</b> <br>
+        <br>
+        {{ Constants.endowment }} correspond à la dotation initiale.<br>
+        <br>
+        {{ player.vehicle_utility }} correspond à votre gain lié à votre choix.<br>
+        <br>
+        {{ player.vehicle_cost }} correspond au coût de l'option.<br>
+        <br>
+        {{ all_conventional }} <span>&#215;</span> {{ Constants.conventional_pollution }}
+        correspond à la perte engendrée par les participants ayant choisi l'option C.<br>
+        {{ endif }}
+
+
+        <br>
+        {{ if show_previous == 1 }}
+        Votre paiement à la période précédente était de {{ prev_player.payoff|to0 }} ECUs.
+        {{ endif }}
+
+
+    </p>
+
+
+
+    {{ next_button }}
+{{ endblock }}
+
+

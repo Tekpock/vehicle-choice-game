@@ -7,8 +7,8 @@ SERVER_URL = 'http://localhost:8000'  # Change this to https://your_app_web_addr
 ROOM_NAME = 'vehicle_choice'
 REST_KEY = ''  # fill this as indicated here https://otree.readthedocs.io/en/latest/misc/rest_api.html#authentication
 TREATMENT_ASSIGNMENTS = dict(
-    Tax=[1],
-    NoTax=[2, 3]
+    Policy=[1],
+    NoPolicy=[2, 3]
 )
 
 if list(TREATMENT_ASSIGNMENTS) != list(TREATMENT_ASSIGNMENTS):
