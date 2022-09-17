@@ -49,30 +49,28 @@ class Constants(BaseConstants):
 
 
 class Subsession(BaseSubsession):
+    pass
 
-    # ASSIGNING TO ROLES
+def creating_session(session):
+    session.group_randomly()  # This randomizes the groups
 
-    def creating_session(self):
-        # self.group_randomly()  # This randomizes the groups
+    # Some role assignment below
+    for p in session.get_players():
+        if session.round_number == 1:
+            if p.id_in_group == 1:
+                p.participant.vars['type'] = 'player1'
+            elif p.id_in_group == 2:
+                p.participant.vars['type'] = 'player2'
+            elif p.id_in_group == 3:
+                p.participant.vars['type'] = 'player3'
+            elif p.id_in_group == 4:
+                p.participant.vars['type'] = 'player4'
+            elif p.id_in_group == 5:
+                p.participant.vars['type'] = 'player5'
+            elif p.id_in_group == 6:
+                p.participant.vars['type'] = 'player6'
 
-        # Some role assignment below
-        for p in self.get_players():
-            if self.round_number == 1:
-                if p.id_in_group == 1:
-                    p.participant.vars['type'] = 'player1'
-                elif p.id_in_group == 2:
-                    p.participant.vars['type'] = 'player2'
-                elif p.id_in_group == 3:
-                    p.participant.vars['type'] = 'player3'
-                elif p.id_in_group == 4:
-                    p.participant.vars['type'] = 'player4'
-                elif p.id_in_group == 5:
-                    p.participant.vars['type'] = 'player5'
-                elif p.id_in_group == 6:
-                    p.participant.vars['type'] = 'player6'
-
-            p.type = p.participant.vars['type']
-
+        p.type = p.participant.vars['type']
 
 class Group(BaseGroup):
     total_pollution = models.IntegerField()
@@ -102,6 +100,8 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     # THE TREATMENT TO WHICH THE PLAYER WAS ASSIGNED
+
+    type = models.StringField()
 
     adopt_regulation1 = models.StringField()
     adopt_regulation2 = models.StringField()

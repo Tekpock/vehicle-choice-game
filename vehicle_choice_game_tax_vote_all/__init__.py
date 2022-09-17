@@ -49,29 +49,30 @@ class Constants(BaseConstants):
 
 
 class Subsession(BaseSubsession):
+    pass
 
-    # ASSIGNING TO ROLES
+# ASSIGNING TO ROLES
 
-    def creating_session(self):
-        # self.group_randomly()  # This randomizes the groups
+def creating_session(session):
+    session.group_randomly()  # This randomizes the groups
 
-        # Some role assignment below
-        for p in self.get_players():
-            if self.round_number == 1:
-                if p.id_in_group == 1:
-                    p.participant.vars['type'] = 'player1'
-                elif p.id_in_group == 2:
-                    p.participant.vars['type'] = 'player2'
-                elif p.id_in_group == 3:
-                    p.participant.vars['type'] = 'player3'
-                elif p.id_in_group == 4:
-                    p.participant.vars['type'] = 'player4'
-                elif p.id_in_group == 5:
-                    p.participant.vars['type'] = 'player5'
-                elif p.id_in_group == 6:
-                    p.participant.vars['type'] = 'player6'
+    # Some role assignment below
+    for p in session.get_players():
+        if session.round_number == 1:
+            if p.id_in_group == 1:
+                p.participant.vars['type'] = 'player1'
+            elif p.id_in_group == 2:
+                p.participant.vars['type'] = 'player2'
+            elif p.id_in_group == 3:
+                p.participant.vars['type'] = 'player3'
+            elif p.id_in_group == 4:
+                p.participant.vars['type'] = 'player4'
+            elif p.id_in_group == 5:
+                p.participant.vars['type'] = 'player5'
+            elif p.id_in_group == 6:
+                p.participant.vars['type'] = 'player6'
 
-            p.type = p.participant.vars['type']
+        p.type = p.participant.vars['type']
 
 
 class Group(BaseGroup):
@@ -102,6 +103,8 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     # THE TREATMENT TO WHICH THE PLAYER WAS ASSIGNED
+
+    type = models.StringField()
 
     adopt_tax1 = models.StringField()
     adopt_tax2 = models.StringField()
@@ -173,9 +176,16 @@ class Player(BasePlayer):
     )
 
 
-# HERE WE ASSIGN THE TREATMENTS TO THE GROUPS
 
 # FUNCTIONS
+# FOR EACH PLAYER THIS RETURNS THE PLAYERS ROLE
+
+# def role(player):
+#    return player.participant.vars['type']
+
+
+
+# HERE WE ASSIGN THE TREATMENTS TO THE GROUPS
 def assign_treatment(player: Player):
     group_id = player.group.id_in_subsession
     treatment_assignments = player.session.vars['treatment_assignments']
