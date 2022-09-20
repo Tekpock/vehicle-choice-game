@@ -4,20 +4,75 @@
 
 {{ block content }}
 <p>
-    Dans <b>l'étape 1</b> des trois premières parties nous vous demanderons d'effectuer un vote.
-    A chaque vote vous devez choisir si vous souhaitez <b>la mise en place d'une <i>taxe</i> ou non</b>.
-    Les membres de votre groupe devront aussi choisir s'il souhaitent la mise en place ou non de la taxe.
-    Le résultat d'un des trois votes sera implémenté à l'étape 2 de la partie 3.<br>
+    Pour les parties 1,2, et 3 :
     <br>
-    <i>En quoi consiste la mise en place de la taxe ?</i> <br>
-    <br>
-    S'il y a une mise en place de la taxe, les participants qui auront choisi l'option C devront payer une taxe.
-    Les ECUs collectés en tant que taxe seront redistribués parmi les six membres du groupe de façon équitable.
+    <center>
+        <b>Etape 1</b>
+    </center>
     <br>
     <br>
-    Dans <b>l'étape 2</b>, vous devez choisir l'option que vous préférez entre les options A, B et C. <br>
+    <b>L'étape 1 correspond à un vote.</b>
     <br>
-    <center><img src="{{ static 'Images/Etapes.png' }}"/></center>
+    <br>
+    Les votes sont <i><b>importants</b></i>.
+    <br>
+    <br>
+    Vous devez voter pour l'implémentation ou la non implémentation d'une taxe. Tous les membres de votre groupe devront aussi voter.
+    <br>
+    <br>
+    Nous vous expliquerons plus loin dans les instructions en quoi consiste la taxe.
+    <br>
+    <br>
+    <center>
+        <b>Etape 2</b>
+    </center>
+    <br>
+    <br>
+    <b>A l'étape 2 vous avez un choix à effectuer entre trois options.</b>
+    <br>
+    <br>
+    <i>L'<b>étape 2</b></i> est constituée de <i>10 périodes</i>.
+    <br>
+    <br>
+    Au début de chaque période nous allons vous donner une dotation de <b>100 ECUs</b>
+    et nous vous demanderons de choisir l'option que vous préférez entre les options A, B et C.
+    <br>
+    <br>
+    <b>Chaque option</b> vous rapportera un \textbf{gain différent} et chaque option a un <br>coût d'utilisation différent<br>.
+    <br>
+    <br>
+    Si vous choisissez <b>l'option A</b> : <b>vous gagnez 100 ECUs</b>, vous subissez un coût d'utilisation <b>de 55 ECUs</b>
+    et ne subissez <b>aucune perte</b> si <b>aucun membre de votre groupe a choisi l'option C</b>
+    ou vous subissez une perte de <b>5 ECUs par membre</b> de votre groupe ayant choisi l'option C.
+    <br>
+    <br>
+    Si vous choisissez <b>l'option B</b>: vous gagnez <b>X ECUs</b> <i>(change selon le joueur)</i>,
+    vous subissez un coût d'utilisation <b>de 10 ECUs</b> et ne subissez <b>aucune perte</b>
+    si <b>aucun membre de votre groupe a choisi l'option C</b> ou vous subissez
+    une perte de <b>5 ECUs par chaque membre</b> de votre groupe qui choisit l'option C.
+
+    Si vous choisissez l'option C : vous gagnez <b>100 ECUs</b>, vous subissez un coût d'utilisation
+    de <b>40 ECUs</b> et vous subissez une <b>perte de 5 ECUs</b>, ainsi que les autres membres de votre groupe;
+    vous subissez une perte supplémentataire de 5 ECUS par chaque membre de votre groupe qui choisit l'option C.
+    <br>
+    <br>
+    <i>Comment fonctionnent les pertes ? </i>
+    <br>
+    <br>
+    Si vous choisissez l'option C, vous subissez une <b>perte de 5 ECUs</b>,
+    et vous <b>imposerez une perte de 5 ECUs à chaque participant</b> de votre groupe, même s'ils n'ont pas choisi l'option C.
+    <br>
+    <br>
+    <b>De même, si un autre membre de votre groupe a choisi l'option C, vous subissez aussi une perte de 5 ECUs.</b>
+    <br>
+    <br>
+    Ainsi, si deux membres de votre groupe ont choisi l'option C, vous subissez chacun une perte de 10 ECUs.
+    <br>
+    <br>
+    Plus il y a de membres de votre groupe qui choisissent l'option C, plus les pertes sont importantes.
+    <br>
+    <br>
+    <center><img src="{{ static 'Images/externalities.png' }}"/></center>
 </p>
 
 {{ next_button }}
