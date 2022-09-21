@@ -1,70 +1,60 @@
 {{ block title }}
-<center> <b>Etape 2</b> </center>
+
 {{ endblock }}
 
 {{ block content }}
 <p>
-    L'<b>étape 2</b> est constituée de <i>10 périodes</i>.<br>
-    <br>
-    A chaque période nous allons vous donner une dotation de <b>100 ECUs</b>
-    et nous vous demanderons de choisir l'option que vous préférez entre les options A, B et C.<br>
-    <br>
-    <b>Chaque option</b> vous rapportera un <b>gain différent</b> et chaque option a un <b>coût différent</b> d'utilisation.
+    <i>Attention</i>, quelque soit le résultat du vote à la partie 1,la taxe <b>ne sera pas</b> implémentée.
     <br>
     <br>
-    Si vous choisissez l'option C vous allez avoir une <b>perte de 5 ECUs</b> supplémentaires,
-    et vous <b>imposerez une perte de 5 ECUs à chaque participant</b> de votre groupe,
-    même s'ils n'ont pas choisi l'option C.<br>
+    A la <b>partie 2</b>, quelque soit le résultat du vote, la taxe <b>sera</b> implémentée <i>indépendamment</i> du résultat du vote de la partie 2.
     <br>
-    Les options A et B n'entraînent pas de perte.<br>
     <br>
-    Si vous choisissez l'option C, chaque membre de votre groupe aura 5 ECUs en moins pour la période concernée.<br>
+    A la <b>partie 3</b>, le résultat du <b>vote</b> d'une des trois parties sera tiré au sort puis implémenté.
+    <b>Il est donc possible qu'à la partie 3, la taxe soit ou ne soit pas implémentée.</b>
     <br>
-    <b>De même, si un autre membre de votre groupe a choisi l'option C, vous aurez une perte de 5 ECUs</b>.<br>
     <br>
-    Ainsi, si deux membres de votre groupe ont choisi l'option C, vous aurez une perte de 10 ECUs.<br>
+    <b>Ainsi, les votes des trois parties auront seulement un impact sur la partie 3.</b>
     <br>
-    Le tableau suivant résume les gains, les coûts et les dégâts de chaque option.<br>
     <br>
-    Vous avez été assigné au Joueur {{ player.id_in_group }}.<br>
+    <center>  <img src="{{ static 'Images/implementation_taxe.png' }}"/> <br>  </center>
     <br>
-
-    {{ if player.id_in_group == 1 }} <center>  <img src="{{ static 'Images/J1.png' }}"/> </center> <br> {{ endif }}
-
-    {{ if player.id_in_group == 2 }} <center>  <img src="{{ static 'Images/J2.png' }}"/> </center> <br> {{ endif }}
-
-    {{ if player.id_in_group == 3 }} <center> <img src="{{ static 'Images/J3.png' }}"/> </center> <br> {{ endif }}
-
-    {{ if player.id_in_group == 4 }} <center>  <img src="{{ static 'Images/J4.png' }}"/> </center> <br> {{ endif }}
-
-    {{ if player.id_in_group == 5 }} <center>  <img src="{{ static 'Images/J5.png' }}"/> </center> <br> {{ endif }}
-
-    {{ if player.id_in_group == 6 }} <center>  <img src="{{ static 'Images/J6.png' }}"/> </center> <br> {{ endif }}
-
-
     <br>
-    <b>Exemple:</b> Supposons que vous avez choisi l'option A et que trois membres de votre groupe ont choisi l'option C.<br>
+    <i>Comment le vote choisi sera-t-il déterminé ?</i>
     <br>
-    Votre paiement sera donc égal à :<br>
     <br>
-    <center>100+100-55-(5<span>&#215;</span>3) = 130</center> <br>
+    Le vote sera déterminé grâce au tirage au sort d'une <b>bille</b>.
     <br>
-    100 correspond à votre dotation initiale, 100 correspond à votre gain,
-    55 correspond au coût d'utilisation de l'option choisie
-    et 5<span>&#215;</span>3 correspond à la perte imposée par chaque membre de votre groupe ayant choisi l'option C.<br>
-
     <br>
-    <center> <img src="{{ static 'Images/externalities.png' }}"/> </center><br>
+    Nous allons constituer une urne composée de 30 billes:<br>
+    <ul>
+        <li>10 billes violettes</li>
+        <li>10 billes orange</li>
+        <li>10 billes bleues</li>
+    </ul>
     <br>
-
-    Après chaque période, votre paiement sera affiché sur votre écran pour la période concernée.<br>
+    Si une bille violette est choisie, alors le résultat du vote 1 sera implémenté.<br>
     <br>
-
-
-
-
-
-
+    Si une bille orange est choisie, alors le résultat du vote 2 sera implémenté.<br>
+    <br>
+    Si une bille bleue est tirée au sort, alors le résultat du vote 3 sera implémenté.<br>
+    <br>
+    Chacun des trois votes a <b>la même probabilité</b> d'être implementé, soit 1/3.<br>
+    <br>
+    <center>  <img src="{{ static 'Images/urne.png' }}"/> <br>  </center>
+    <br>
+    Si il y a égalité (3 oui et 3 non) au sein du vote tiré au sort,
+    nous lancerons un dé afin de départager le vote.
+    Si le nombre est pair, alors il y aura l'implémentation de la taxe.
+    Si le nombre est impair, alors il n'y aura pas de mise en place de la taxe.
+    <br>
+    <br>
+    Vous connaîtrez les résultats des différents votes de votre groupe après le vote 3. <br>
+    <br>
+    Cette procédure peut être résumée grâce à l'image suivante :
+    <br>
+    <br>
+    <center>  <img src="{{ static 'Images/vote123.png' }}"/> <br>  </center>
 
 </p>
 
