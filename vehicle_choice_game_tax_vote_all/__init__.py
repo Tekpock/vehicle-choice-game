@@ -134,11 +134,12 @@ class Player(BasePlayer):
 
     # FIRST POLICY VOTE
     vote_taxation = models.BooleanField(
-        label="Souhaitez vous une mise en place de la taxe à l'étape 2 de la Partie 3 ?",
+        label="Veuillez voter pour ou contre l'implémentation de la taxe à la Partie 3 ?",
         choices=[
             [True,
-             "Oui, je souhaite la mise en place d'une taxe de 25 ECUs pour chaque membre du groupe qui choisit l'option C."],
-            [False, "Non, je ne souhaite pas la mise en place d'une taxe de 25 ECUs."],
+             "Pour : Oui, je souhaite l'implémentation d'une taxe de 25 ECUs qui devra être payée par chaque membre "
+             "du groupe qui choisit l'option C."],
+            [False, "Contre : Non, je ne souhaite pas l'implémentation d'une taxe de 25 ECUs."],
         ]
     )
 
