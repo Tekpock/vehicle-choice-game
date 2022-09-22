@@ -1,4 +1,5 @@
 from otree.api import *
+import math
 
 doc = """
 Your app description
@@ -296,14 +297,13 @@ class Payoff(Page):
             # payoff1=player.in_round(1).payoff,
             # payoff2=player.in_round(2).payoff,
             # payoff3=player.in_round(3).payoff,
-            payoff_final=player.participant.payoff,
-            # chosen_round=player.participant.vars['selected_round'],
+            payoff_final=math.ceil(player.participant.payoff),
             chosen_round=chosen_round,
             chosen_stage=chosen_stage,
             participation_fee=player.session.config['participation_fee'],
             conversion_rate=player.session.config['real_world_currency_per_point'],
-            converted_payoff=(player.participant.payoff * player.session.config['real_world_currency_per_point']),
-            payoff_euro=player.participant.payoff_plus_participation_fee(),
+            converted_payoff=math.ceil(player.participant.payoff * player.session.config['real_world_currency_per_point']),
+            payoff_euro=math.ceil(player.participant.payoff_plus_participation_fee()),
             after_conversion=player.participant.payoff / player.session.config['real_world_currency_per_point']
 
             # last_round_payoff=player.in_round(player.round_number - 1).payoff

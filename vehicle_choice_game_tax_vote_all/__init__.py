@@ -679,7 +679,7 @@ class Results(Page):
 
 
 
-page_sequence = [Instructions1, Instructions2, Instructions3, Instructions4, Instructions5, Instructions6, Comprehension,
+page_sequence = [Instructions1, Instructions2, Instructions3, Instructions4, Instructions5, Comprehension,
                  InstructionsWaitPage, Vote, VoteWaitPage, VoteResults, VehicleChoice, VehicleChoiceFinal,
                  ResultsWaitPage, Results]
 
