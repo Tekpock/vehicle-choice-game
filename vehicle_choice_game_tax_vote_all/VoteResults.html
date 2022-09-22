@@ -1,5 +1,5 @@
 {{ block title }}
-    <b>Résultats des votes</b>
+    <center><b>Résultats des votes</b></center>
 {{ endblock }}
 
 {{ block content }}
@@ -9,7 +9,7 @@
     <i>VOTE DE LA PARTIE 1 :</i> {{ for_vote1 }} membres ont voté pour la mise en place de la taxe. {{ against_vote1 }} membres ont voté contre la mise en place.<br>
     <br>
     {{ if vote1 == "Adopted" }}
-    La mise en place de la taxe a remporté le vote. Si ce vote est choisi alors, il y aura une taxe lors de l'étape suivante.<br>
+    L'implémentation de la taxe a remporté le vote. Si ce vote est choisi alors, il y aura une taxe lors de l'étape suivante.<br>
     {{ endif }}
     {{ if vote1 == "Not Adopted" }}
     La non mise en place de la taxe a remporté le vote. Si ce vote est choisi alors, il n'y aura pas de taxe lors de l'étape suivante.<br>
@@ -22,7 +22,7 @@
    <i>VOTE DE LA PARTIE 2 :</i> {{ for_vote2 }} membres ont voté pour la mise en place de la taxe. {{ against_vote2 }} membres ont voté contre la mise en place.<br>
     <br>
     {{ if vote2 == "Adopted" }}
-    La mise en place de la taxe a remporté le vote. Si ce vote est choisi alors, il y aura une taxe lors de l'étape suivante.<br>
+    L'implémentation de la taxe a remporté le vote. Si ce vote est choisi alors, il y aura une taxe lors de l'étape suivante.<br>
     {{ endif }}
     {{ if vote2 == "Not Adopted" }}
     La non mise en place de la taxe a remporté le vote. Si ce vote est choisi alors, il n'y aura pas de taxe lors de l'étape suivante.<br>
@@ -35,7 +35,7 @@
     <i>VOTE DE LA PARTIE 3 :</i> {{ for_vote3 }} membres ont voté pour la mise en place de la taxe. {{ against_vote3 }} membres ont voté contre la mise en place.<br>
     <br>
     {{ if vote3 == "Adopted" }}
-    La mise en place de la taxe a remporté le vote. Si ce vote est choisi alors, il y aura une taxe lors de l'étape suivante.<br>
+    L'implémentation de la taxe a remporté le vote. Si ce vote est choisi alors, il y aura une taxe lors de l'étape suivante.<br>
     {{ endif }}
     {{ if vote3 == "Not Adopted" }}
     La non mise en place de la taxe a remporté le vote. Si ce vote est choisi alors, il n'y aura pas de taxe lors de l'étape suivante.<br>

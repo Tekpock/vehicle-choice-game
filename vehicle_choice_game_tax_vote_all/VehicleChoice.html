@@ -6,12 +6,9 @@
         {{ if player.round_number < Constants.stage2_round }}
         <b>Il n'y a pas d'implémentation de taxe à cette partie !</b>
         {{ endif }}
-
         {{ if player.round_number >= Constants.stage2_round }}
-    <i>Rappel :</i> Lors de cette étape, <b>la taxe sera implémentée</b>.
-        Si vous choisissez l'option C alors vous devez payer une taxe de <b> 25 ECUs </b>.
-        Le montant collecté des taxes sera redistribué de façon égale entre les membres du groupe.
-        {{ endif }}
+        <b>Il y a d'implémentation de la taxe à cette partie !</b>
+        {{ endif }
 
         <center> <img src="{{ static 'Images/implementation_taxe.png' }}"/> </center> <br>
 
@@ -20,9 +17,7 @@
         Cette étape comporte 10 périodes.<br>
         <br>
         A chaque période vous et les autres membres du groupe devez décider de façon
-        individuelle <b>l'option que vous préférez entre l'option A, B et C</b>
-        {{ if player.round_number >= Constants.stage2_round }}
-        , en prenant en compte la présence d'une <b>taxe</b>{{ endif }}.
+        individuelle <b>l'option que vous préférez entre l'option A, B et C</b>.
         <br>
         <br>
         Au début de chaque période, vous, ainsi que les cinq autres membres de votre groupe, disposez chacun d’une dotation de 100 ECUs. <br>
@@ -50,9 +45,21 @@
 
         {{ <center>  <img src="{{ static 'Images/externalities.png' }}"/> </center>  <br> }}
         <br>
-        {{ if current_stage == 2 }} <center>  <img src="{{ static 'Images/redistribution.png' }}"/> </center> {{ endif }}
+        {{ if current_stage == 2 }}
+        <b>RAPPEL : SI VOUS CHOISISSEZ L'OPTION C, VOUS DEVREZ PAYER UNE TAXE DE 25 ECUs.</b>
+        <br>
+        <br>
+        Chaque membre de votre groupe ayant choisi l'option C devra payer une taxe de 25 ECUs.
+        <br>
+        <br>
+        La taxe collectée sera redistribuée de façon équitable :
+        <br>
+        <br>
+        <center>  <img src="{{ static 'Images/redistribution.png' }}"/> </center>
+        <br>
+        {{ endif }}
         Vous avez une calculatrice sur votre écran que vous pouvez utiliser afin de réaliser votre choix.<br>
-        
+
 </p>
 
     {{ formfields }}

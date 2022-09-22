@@ -6,24 +6,28 @@
 
 
         {{ if final_policy == "Policy" }}
-        La mise en place de la taxe a remporté le vote,
+        L'implémentation de la taxe a remporté le vote,
         vous allez donc choisir l'option que vous préférez en prenant en compte la présence d'une taxe.<br>
         {{ endif }}
 
         {{ if final_policy == "NoPolicy" }}
-        La non mise en place de la taxe a remporté le vote, vous allez donc choisir l'option que vous préférez.
-        Il n'y a pas de taxe à cette étape. <br>
+        La non implémentation de la taxe a remporté le vote.
         {{ endif }}
         <br>
         Cette étape comporte 10 périodes.
-        A chaque période vous et les autres membres du groupe devez décider de façon individuelle
-        <b>l'option que vous préférez entre l'option A, B et C</b>
-        {{ if group.tax_present == 1 }}
-        , en prenant en compte la présence d'une <b>taxe</b>{{ endif }}.
-        Au début de chaque période, vous, ainsi que les cinq autres membres de votre groupe, disposez chacun d’une dotation de 100 ECUs.<br>
-        {{ if group.tax_present == 1 }} Rappel: si vous choisissez l'option C, vous devez payer une taxe de 25 ECUs. <br> {{ endif }}
         <br>
-
+        <br>
+        Au début de chaque période vous et les autres membres du groupe devez décider de façon individuelle
+        <b>l'option que vous préférez entre l'option A, B et C</b>.
+        <br>
+        <br>
+        Au début de chaque période, vous, ainsi que les cinq autres membres de votre groupe, disposez chacun d’une dotation de 100 ECUs.<br>
+        <br>
+        <br>
+        Chaque membre du groupe ayant choisi l'option C imposera une perte de 5 ECUs à chaque membre du groupe.
+        Plus il y a de membres de votre groupe qui choisissent l'option C, plus les pertes sont importantes.
+        <br>
+        <br>
         Vous êtes à la période {{ stage_round }}. Il reste {{ stage_remaining }} périodes.<br>
         <br>
         Veuillez vous référer au tableau suivant afin de prendre votre choix:<br>
@@ -40,8 +44,19 @@
 
         {{ if player.id_in_group == 6 }} </center> <img src="{{ static 'Images/J6.png' }}"/> <br> </center> {{ endif }}
         <br>
-
-        {{ if current_stage == 2 }} </center> <img src="{{ static 'Images/redistribution.png' }}"/> </center> {{ endif }}
+        </center> <img src="{{ static 'Images/externalities.png' }}"/> <br> </center>
+        {{ if group.tax_present == 1 }} Rappel: si vous choisissez l'option C, vous devez payer une taxe de 25 ECUs. <br>
+        <br>
+        Chaque membre de votre groupe ayant choisi l'option C devra payer une taxe de 25 ECUs.
+        <br>
+        <br>
+        La taxe collectée sera redistribuée de façon équitable :
+        <br>
+        <br>
+         </center> <img src="{{ static 'Images/redistribution.png' }}"/> </center> {{ endif }}
+        <br>
+        <br>
+        Vous avez une calculatrice sur votre écran que vous pouvez utiliser afin de réaliser votre choix.
 
 </p>
 

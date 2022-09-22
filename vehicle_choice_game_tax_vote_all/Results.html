@@ -30,15 +30,18 @@
         <br>
         {{ player.vehicle_cost }} correspond au coût de l'option.<br>
         <br>
-        {{ Constants.conventional_tax }} correspond au montant de la taxe.<br>
-        <br>
         {{ all_conventional }} <span>&#215;</span> {{ Constants.conventional_pollution }}
         correspond au dégât généré par les participants ayant choisi l'option C.<br>
-
+        <br>
+        {{ Constants.conventional_tax }} correspond au montant de la taxe payée.<br>
+        <br>
         <br>
         {{ group.tax_redistribution }} correspond à la redistribution de la taxe.<br>
-
+        <br>
         {{ endif }}
+        <br>
+
+
 
         {{ if group.tax_present == 0 }}
         {{ Constants.endowment }} + {{ player.vehicle_utility }}
@@ -55,7 +58,7 @@
         {{ player.vehicle_cost }} correspond au coût de l'option.<br>
         <br>
         {{ all_conventional }} <span>&#215;</span> {{ Constants.conventional_pollution }}
-        correspond à la perte engendrée par les participants ayant choisi l'option C.<br>
+        correspond au dégât généré par les participants ayant choisi l'option C.<br>
         {{ endif }}
 
 

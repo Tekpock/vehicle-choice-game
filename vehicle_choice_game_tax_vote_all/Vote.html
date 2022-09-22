@@ -56,44 +56,6 @@
     le total des taxes collectées s'élève à 25 <span>&#215;</span> 2 = 50 ECUs.
     Vous allez donc recevoir grâce à la redistribution de la taxe 50/6 = 8.333 ECUs, et ainsi de suite.<br>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <br>
-    <img src="{{ static 'Images/redistribution.png' }}"/><br>
-    <br>
-    Le vote de la partie
-    {{ if subsession.round_number == Constants.stage1_round }}1{{ endif }}
-    {{ if subsession.round_number == Constants.stage2_round }}2{{ endif }}
-    {{ if subsession.round_number == Constants.stage3_round }}3{{ endif }}
-    aura un impact sur l'étape 2 de la Partie 3. <br>
-    <br>
-    Vous devez choisir si vous souhaitez la mise en place d'une taxe lors de l'étape 2 de la Partie 3.<br>
-    <br>
-
-    <br>
-    <img src="{{ static 'Images/Etapes.png' }}"/><br>
-    <br>
-
 </p>
     {{ formfields }}
     {{ next_button }}
