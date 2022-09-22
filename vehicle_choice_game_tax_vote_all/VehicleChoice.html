@@ -4,13 +4,13 @@
         <i><b>Etape 2</b></i> <br>
         <br>
         {{ if player.round_number < Constants.stage2_round }}
-        <b>Il n'y a pas d'implémentation de taxe à cette partie !</b>
+        <b> Il n'y a pas d'implémentation de taxe à cette partie ! </b>
         {{ endif }}
         {{ if player.round_number >= Constants.stage2_round }}
-        <b>Il y a d'implémentation de la taxe à cette partie !</b>
+        <b> Il y a d'implémentation de la taxe à cette partie ! </b>
         {{ endif }
 
-        <center> <img src="{{ static 'Images/implementation_taxe.png' }}"/> </center> <br>
+        <center> <img src="{{ static 'Images/implementation_taxe.png' }}"/> </center>
 
         <br>
         <br>
@@ -43,7 +43,8 @@
         {{ if player.id_in_group == 6 }} <center>  <img src="{{ static 'Images/J6.png' }}"/> </center>  <br> {{ endif }}
         <br>
 
-        {{ <center>  <img src="{{ static 'Images/externalities.png' }}"/> </center>  <br> }}
+        <center> <img src="{{ static 'Images/externalities.png' }}"/> </center>  <br>
+
         <br>
         {{ if current_stage == 2 }}
         <b>RAPPEL : SI VOUS CHOISISSEZ L'OPTION C, VOUS DEVREZ PAYER UNE TAXE DE 25 ECUs.</b>
