@@ -301,6 +301,8 @@ class Payoff(Page):
             chosen_round=chosen_round,
             chosen_stage=chosen_stage,
             participation_fee=player.session.config['participation_fee'],
+            conversion_rate=player.session.config['real_world_currency_per_point'],
+            converted_payoff=(player.participant.payoff * player.session.config['real_world_currency_per_point']),
             payoff_euro=player.participant.payoff_plus_participation_fee(),
             after_conversion=player.participant.payoff / player.session.config['real_world_currency_per_point']
 
