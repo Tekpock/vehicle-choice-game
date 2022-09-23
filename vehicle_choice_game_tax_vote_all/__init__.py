@@ -9,14 +9,14 @@ Your app description
 class Constants(BaseConstants):
     name_in_url = 'vehicle_choice_game_tax_vote_all'
     players_per_group = 6
-    num_rounds = 6
+    num_rounds = 30
 
     # THE ROUND FOR NO POLICY
     stage1_round = 1
     # THE ROUND FOR POLICY
-    stage2_round = 3
+    stage2_round = 11
     # THE ROUND FOR POLICY OR NO POLICY
-    stage3_round = 5
+    stage3_round = 21
 
     # NAME OF THE TREATMENT
     TREATMENTS = ['Policy', 'NoPolicy']
