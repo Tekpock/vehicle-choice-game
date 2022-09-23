@@ -5,7 +5,7 @@ POST = requests.post
 
 SERVER_URL = 'https://vehicle-choice-game.herokuapp.com'  # Change this to https://your_app_web_address
 ROOM_NAME = 'vehicle_choice'
-REST_KEY = ''  # fill this as indicated here https://otree.readthedocs.io/en/latest/misc/rest_api.html#authentication
+REST_KEY = 'EconomiX'  # fill this as indicated here https://otree.readthedocs.io/en/latest/misc/rest_api.html#authentication
 TREATMENT_ASSIGNMENTS = dict(
     Policy=[1],
     NoPolicy=[2, 3]
