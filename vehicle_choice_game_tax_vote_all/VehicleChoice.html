@@ -1,65 +1,67 @@
 
 {{ block content }}
 <p>
-        <i><b>Etape 2</b></i> <br>
-        <br>
-        {{ if player.round_number < Constants.stage2_round }}
-        <b> Il n'y a pas d'implémentation de taxe à cette partie ! </b>
-        {{ endif }}
-        {{ if player.round_number >= Constants.stage2_round }}
-        <b> Il y a d'implémentation de la taxe à cette partie ! </b>
-        {{ endif }
+    <i><b>Etape 2</b></i> <br>
+    <br>
+    {{ if current_stage == 1 }}
+    <b> Il n'y a pas d'implémentation de taxe à cette partie ! </b>
+    <br>
+    <br>
+    {{ endif }}
+    {{ if current_stage == 2 }}
+    <b> Il y a implémentation de la taxe à cette partie ! </b>
+    <br>
+    <br>
+    {{ endif }}
+    <img src="{{ static 'Images/implementation_taxe.png' }}"/>
+    <br>
+    <br>
+    Cette étape comporte 10 périodes.<br>
+    <br>
+    A chaque période vous et les autres membres du groupe devez décider de façon
+    individuelle <b>l'option que vous préférez entre l'option A, B et C</b>.
+    <br>
+    <br>
+    Au début de chaque période, vous, ainsi que les cinq autres membres de votre groupe, disposez chacun d’une dotation de 100 ECUs. <br>
+    <br>
+    Chaque membre du groupe ayant choisi l'option C imposera une perte de 5 ECUs à chaque membre du groupe.
+    Plus il y a de membres de votre groupe qui choisissent l'option C, plus les pertes sont importantes.
+    <br>
+    <br>
+    Vous êtes à la période {{ stage_round }}. Il reste {{ stage_remaining }} périodes.<br>
+    <br>
+    Veuillez vous référer au tableau suivant afin de prendre votre choix:<br>
+    <br>
+    {{ if player.id_in_group == 1 }} <center> <img src="{{ static 'Images/J1.png' }}"/> </center> <br> {{ endif }}
 
-        <center> <img src="{{ static 'Images/implementation_taxe.png' }}"/> </center>
+    {{ if player.id_in_group == 2 }} <center> <img src="{{ static 'Images/J2.png' }}"/> </center> <br> {{ endif }}
 
-        <br>
-        <br>
-        Cette étape comporte 10 périodes.<br>
-        <br>
-        A chaque période vous et les autres membres du groupe devez décider de façon
-        individuelle <b>l'option que vous préférez entre l'option A, B et C</b>.
-        <br>
-        <br>
-        Au début de chaque période, vous, ainsi que les cinq autres membres de votre groupe, disposez chacun d’une dotation de 100 ECUs. <br>
-        <br>
-        Chaque membre du groupe ayant choisi l'option C imposera une perte de 5 ECUs à chaque membre du groupe.
-        Plus il y a de membres de votre groupe qui choisissent l'option C, plus les pertes sont importantes.
-        <br>
-        <br>
-        Vous êtes à la période {{ stage_round }}. Il reste {{ stage_remaining }} périodes.<br>
-        <br>
-        Veuillez vous référer au tableau suivant afin de prendre votre choix:<br>
-        <br>
-        {{ if player.id_in_group == 1 }} <center> <img src="{{ static 'Images/J1.png' }}"/> </center> <br> {{ endif }}
+    {{ if player.id_in_group == 3 }} <center> <img src="{{ static 'Images/J3.png' }}"/> </center> <br> {{ endif }}
 
-        {{ if player.id_in_group == 2 }} <center> <img src="{{ static 'Images/J2.png' }}"/> </center> <br> {{ endif }}
+    {{ if player.id_in_group == 4 }} <center> <img src="{{ static 'Images/J4.png' }}"/> </center> <br> {{ endif }}
 
-        {{ if player.id_in_group == 3 }} <center> <img src="{{ static 'Images/J3.png' }}"/> </center> <br> {{ endif }}
+    {{ if player.id_in_group == 5 }} <center>  <img src="{{ static 'Images/J5.png' }}"/> </center> <br> {{ endif }}
 
-        {{ if player.id_in_group == 4 }} <center> <img src="{{ static 'Images/J4.png' }}"/> </center> <br> {{ endif }}
+    {{ if player.id_in_group == 6 }} <center>  <img src="{{ static 'Images/J6.png' }}"/> </center>  <br> {{ endif }}
+    <br>
 
-        {{ if player.id_in_group == 5 }} <center>  <img src="{{ static 'Images/J5.png' }}"/> </center> <br> {{ endif }}
+    <center> <img src="{{ static 'Images/externalities.png' }}"/> </center>  <br>
 
-        {{ if player.id_in_group == 6 }} <center>  <img src="{{ static 'Images/J6.png' }}"/> </center>  <br> {{ endif }}
-        <br>
-
-        <center> <img src="{{ static 'Images/externalities.png' }}"/> </center>  <br>
-
-        <br>
-        {{ if current_stage == 2 }}
-        <b>RAPPEL : SI VOUS CHOISISSEZ L'OPTION C, VOUS DEVREZ PAYER UNE TAXE DE 25 ECUs.</b>
-        <br>
-        <br>
-        Chaque membre de votre groupe ayant choisi l'option C devra payer une taxe de 25 ECUs.
-        <br>
-        <br>
-        La taxe collectée sera redistribuée de façon équitable :
-        <br>
-        <br>
-        <center>  <img src="{{ static 'Images/redistribution.png' }}"/> </center>
-        <br>
-        {{ endif }}
-        Vous avez une calculatrice sur votre écran que vous pouvez utiliser afin de réaliser votre choix.<br>
+    <br>
+    {{ if current_stage == 2 }}
+    <b>RAPPEL : SI VOUS CHOISISSEZ L'OPTION C, VOUS DEVREZ PAYER UNE TAXE DE 25 ECUs.</b>
+    <br>
+    <br>
+    Chaque membre de votre groupe ayant choisi l'option C devra payer une taxe de 25 ECUs.
+    <br>
+    <br>
+    La taxe collectée sera redistribuée de façon équitable :
+    <br>
+    <br>
+    <center>  <img src="{{ static 'Images/redistribution.png' }}"/> </center>
+    <br>
+    {{ endif }}
+    Vous avez une calculatrice sur votre écran que vous pouvez utiliser afin de réaliser votre choix.<br>
 
 </p>
 
