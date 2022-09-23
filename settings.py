@@ -66,13 +66,7 @@ ROOMS = [
     dict(name='vehicle_choice', display_name='vehicle_choice')
 ]
 
-OTREE_PRODUCTION = 1
 
-OTREE_AUTH_LEVEL = 'STUDY'
-
-OTREE_ADMIN_PASSWORD = 'EconomiX'
-
-OTREE_REST_KEY = 'EconomiX'
 
 ADMIN_USERNAME = 'admin'
 # for security, best to set admin password in an environment variable
