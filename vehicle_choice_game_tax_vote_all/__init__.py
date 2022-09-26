@@ -9,14 +9,14 @@ Your app description
 class Constants(BaseConstants):
     name_in_url = 'vehicle_choice_game_tax_vote_all'
     players_per_group = 6
-    num_rounds = 30
+    num_rounds = 15
 
     # THE ROUND FOR NO POLICY
     stage1_round = 1
     # THE ROUND FOR POLICY
-    stage2_round = 11
+    stage2_round = 6
     # THE ROUND FOR POLICY OR NO POLICY
-    stage3_round = 21
+    stage3_round = 11
 
     # NAME OF THE TREATMENT
     TREATMENTS = ['Policy', 'NoPolicy']
@@ -54,7 +54,7 @@ class Subsession(BaseSubsession):
 # ASSIGNING TO ROLES
 
 def creating_session(session):
-    session.group_randomly()  # This randomizes the groups
+    # session.group_randomly()  # This randomizes the groups
 
     # Some role assignment below
     for p in session.get_players():
@@ -511,7 +511,8 @@ class Instructions6(Page):
 
 
 class InstructionsWaitPage(WaitPage):
-    pass
+    def is_displayed(player: Player):
+        return player.round_number == 1
 
 
 class Comprehension(Page):

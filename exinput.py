@@ -7,8 +7,8 @@ SERVER_URL = 'https://vehicle-choice-game.herokuapp.com'  # Change this to https
 ROOM_NAME = 'vehicle_choice'
 REST_KEY = 'EconomiX'  # fill this as indicated here https://otree.readthedocs.io/en/latest/misc/rest_api.html#authentication
 TREATMENT_ASSIGNMENTS = dict(
-    Policy=[1],
-    NoPolicy=[2, 3]
+    Policy=[1, 2],
+    NoPolicy=[3]
 )
 
 if list(TREATMENT_ASSIGNMENTS) != list(TREATMENT_ASSIGNMENTS):
