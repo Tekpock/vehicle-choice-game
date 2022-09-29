@@ -165,16 +165,16 @@ class Player(BasePlayer):
         ]
     )
 
-    comprehension3 = models.StringField(
-        label="3. Dans le cas où il y a une mise en place de la taxe, combien d'ECUs supplémentaires"
-              " devez vous payer si vous avez choisi l'option C ?",
-        choices=[
-            ["Option1", "0 ECUs"],
-            ["Option2", "15 ECUs"],
-            ["Option3", "25 ECUs"],
-            ["Option4", "35 ECUs"],
-        ]
-    )
+    # comprehension3 = models.StringField(
+    #    label="3. Dans le cas où il y a une mise en place de la taxe, combien d'ECUs supplémentaires"
+    #          " devez vous payer si vous avez choisi l'option C ?",
+    #    choices=[
+    #        ["Option1", "0 ECUs"],
+    #        ["Option2", "15 ECUs"],
+    #        ["Option3", "25 ECUs"],
+    #        ["Option4", "35 ECUs"],
+    #    ]
+    # )
 
 
 
