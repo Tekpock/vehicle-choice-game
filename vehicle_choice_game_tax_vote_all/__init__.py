@@ -520,7 +520,7 @@ class Comprehension(Page):
         return player.round_number == 1
 
     form_model = "player"
-    form_fields = ["comprehension1", "comprehension2", "comprehension3"]
+    form_fields = ["comprehension1", "comprehension2"]
 
 
 class VehicleChoice(Page):
